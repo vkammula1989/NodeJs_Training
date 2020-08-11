@@ -1,4 +1,4 @@
-import * as UserService from './user-crud.service';
+import * as UserService from '../Services/user-crud.service';
 import { User } from '../models/user';
 
 export const getUserById = async (req:any, res:any) => {
