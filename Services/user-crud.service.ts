@@ -1,9 +1,10 @@
-import  model from "../data-access/models/user"
-import { User, Users } from "../models/user";
+import  dbUser from "../data-access/models/user"
+import sequelize from '../data-access/sequelize'
+import { User } from "../models/user";
 
 
 export const getUserById = async (id: string): Promise<User> => {
-    return model.User.findByPk(id).then((user)=>{
+    return dbUser.findByPk(id).then((user)=>{        
         let user1 : User=  {
             id:'',
             login:'',
@@ -23,10 +24,10 @@ export const getUserById = async (id: string): Promise<User> => {
 };
 
 export const createUser = async (user: User): Promise<any>=> {
-    return model.sequelize.authenticate().then(async() => {
+    return sequelize.authenticate().then(async() => {
         console.log('Connection has been established successfully.');
       }).then(()=>{
-        return model.User
+        return dbUser
         .create({
           id:  user.id,
           login : user.login,
@@ -38,7 +39,7 @@ export const createUser = async (user: User): Promise<any>=> {
 }
 
 export const updateUser = async (user1: User): Promise<void> => {
-    return model.User
+    return dbUser
     .findByPk(user1.id).then((user)=>{
         user.update({
             id:  user1.id,
@@ -51,7 +52,7 @@ export const updateUser = async (user1: User): Promise<void> => {
 }
 
 export const deleteUser = async (id: string): Promise<void> => {
-    return model.User
+    return dbUser
     .findByPk(id).then((user)=>{
         user.update({
             isDeleted: true

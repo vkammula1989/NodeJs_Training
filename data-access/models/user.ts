@@ -1,10 +1,5 @@
-import { Sequelize, Model, DataTypes } from "sequelize";
-
-const sequelize = new Sequelize('postgres', 'vkammula', 'test1234', {
-  host: "localhost",
-  port: 5432,
-  dialect: 'postgres'
-})
+import { Model, DataTypes } from "sequelize";
+import sequelize from "../sequelize"
 
 class User extends Model { }
 
@@ -36,4 +31,4 @@ User.init({
   modelName: 'User'
 });
 
-export  default { User, sequelize }
+export  default User
